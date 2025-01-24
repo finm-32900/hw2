@@ -1,0 +1,34 @@
+{
+  "tests": [
+    {
+      "name": "test_misc_tools::test_weighted_average",
+      "setup": "",
+      "run": "pytest ./src/test_misc_tools.py::test_weighted_average",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_misc_tools::test_groupby_weighted_average",
+      "setup": "",
+      "run": "pytest ./src/test_misc_tools.py::test_groupby_weighted_average",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_misc_tools::test_groupby_weighted_std",
+      "setup": "",
+      "run": "pytest ./src/test_misc_tools.py::test_groupby_weighted_std",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    }
+  ]
+}
