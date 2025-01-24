@@ -1,9 +1,9 @@
 {
   "tests": [
     {
-      "name": "test_misc_tools::test_weighted_average",
+      "name": "test_calc_value_idx",
       "setup": "",
-      "run": "pytest ./src/test_misc_tools.py::test_weighted_average",
+      "run": "pytest -vv ./src/test_calc_CRSP_indices.py::test_calc_value_idx",
       "input": "",
       "output": "",
       "comparison": "exact",
@@ -11,9 +11,9 @@
       "points": 1
     },
     {
-      "name": "test_misc_tools::test_groupby_weighted_average",
+      "name": "test_calc_equal_idx",
       "setup": "",
-      "run": "pytest ./src/test_misc_tools.py::test_groupby_weighted_average",
+      "run": "pytest -vv ./src/test_calc_CRSP_indices.py::test_calc_equal_idx",
       "input": "",
       "output": "",
       "comparison": "exact",
@@ -21,9 +21,199 @@
       "points": 1
     },
     {
-      "name": "test_misc_tools::test_groupby_weighted_std",
+      "name": "test_calc_CRSP_indices_merge",
       "setup": "",
-      "run": "pytest ./src/test_misc_tools.py::test_groupby_weighted_std",
+      "run": "pytest -vv ./src/test_calc_CRSP_indices.py::test_calc_CRSP_indices_merge",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_calc_CRSP_indices_compare_manual",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_CRSP_indices.py::test_compare_CRSP_manual",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_date_range",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_date_range",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_constituent_counts",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_constituent_counts",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_return_correlations_A",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_return_correlations_A",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_return_correlations_B",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_return_correlations_B",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_mean_returns_approx_A",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_mean_returns_approx_A",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_mean_returns_approx_B",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_mean_returns_approx_B",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_mean_returns_sprtrn",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_mean_returns_sprtrn",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_market_cap_normalization",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_market_cap_normalization",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_cumulative_returns",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_cumulative_returns",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_constituent_columns",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_constituent_columns",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_msf_columns",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_msf_columns",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_msix_columns",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_msix_columns",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_market_cap_columns",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_market_cap_columns",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_market_cap_and_returns_columns",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_market_cap_and_returns_columns",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_final_data_columns",
+      "setup": "",
+      "run": "pytest -vv ./src/test_calc_SP500_index.py::test_final_data_columns",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_SP500_load_constituents",
+      "setup": "",
+      "run": "pytest -vv ./src/test_pull_SP500_constituents.py::test_load_constituents",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_resolve_merge_conflicts",
+      "setup": "",
+      "run": "pytest -vv ./src/test_github_skills.py::test_resolve_merge_conflicts",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "test_review_pull_requests",
+      "setup": "",
+      "run": "pytest -vv ./src/test_github_skills.py::test_review_pull_requests",
       "input": "",
       "output": "",
       "comparison": "exact",

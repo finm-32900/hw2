@@ -16,4 +16,16 @@ jobs:
     if: github.actor != 'github-classroom[bot]'
     steps:
       - uses: actions/checkout@v4
+      - name: Clean up pulled files and output directory
+        run: |
+          rm -f "$DATA_DIR/wage_growth.parquet"
+          rm -f "$DATA_DIR/wage_growth.csv"
+          rm -rf $OUTPUT_DIR/*
+      - name: Run doit (thus invoking PyDoit according to the dodo.py file)
+        run: |
+          doit ignore pull_CRSP_Compustat
+          doit ignore pull_SP500_constituents
+          doit ignore convert_notebooks_to_scripts
+          doit ignore run_notebooks
+          doit
       - uses: education/autograding@v1
