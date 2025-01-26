@@ -1,6 +1,17 @@
 # Homework 2
 
-This is only one portion of HW 2. See the textbook website for all the details.
+This is only one portion of HW 2. See the textbook website for all the details: https://finm-32900.github.io/lectures/Week2/HW2.html
+
+To complete this assignment, please read the two HW guides here:
+
+- [HW Guide Part A: CRSP Market Returns Indices](https://finm-32900.github.io/output/_02_CRSP_market_index.html)
+- [HW Guide Part B: Reconstructing the S&P 500 Index](https://finm-32900.github.io/output/_03_SP500_constituents_and_index.html)
+
+Recall that the way to go about this assignment is to run `pytest` and then determine how to write the code to pass the tests.
+
+As a tip, make sure to run the `doit` command before running `pytest`. This will ensure that all the data is pulled before running the tests.
+
+
 
 ## Quick Start
 
