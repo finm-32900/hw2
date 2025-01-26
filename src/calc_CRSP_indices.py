@@ -20,6 +20,8 @@ def calc_equal_weighted_index(df):
     Note that ret is raw and retx is adjusted for dividends.
     """
     ## YOUR CODE HERE
+    def_eq_idx = pd.DataFrame()
+    ## YOUR CODE HERE
     
     df_eq_idx = df_eq_idx.rename(
         columns={
@@ -53,6 +55,10 @@ def calc_CRSP_value_weighted_index(df, freq="MS"):
         lags=1,
         freq=freq,
     )
+    ## YOUR CODE HERE
+    ret = []
+    retx = []
+    mkt_cap = []
     ## YOUR CODE HERE
     
     df_vw_idx = pd.concat(

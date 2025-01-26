@@ -44,6 +44,8 @@ def calculate_sp500_total_market_cap(
     # Calculate for each month-end date
     for i, date in enumerate(dates):
         ## YOUR CODE HERE
+        pass
+        ## YOUR CODE HERE
 
     # Create DataFrame from arrays
     results_df = pd.DataFrame(
@@ -156,10 +158,12 @@ def calculate_sp500_returns_with_rebalancing(
     # Calculate weights for each date
     for i, date in enumerate(dates):
         ## YOUR CODE HERE
+        pass
+        ## YOUR CODE HERE
 
     # # Verify the weights sum to approximately 1 for each date
     weight_sums = sp500_weights.sum(axis=1)
-    assert np.allclose(weight_sums, 1.0, atol=1e-6)
+    # assert np.allclose(weight_sums, 1.0, atol=1e-6)
 
     # Ensure both matrices are sorted the same way
     ret_matrix = (
