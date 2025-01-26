@@ -8,7 +8,7 @@ import pull_SP500_constituents
 from settings import config
 
 DATA_DIR = config("DATA_DIR")
-START_DATE = pd.to_datetime("1965-01-29")
+START_DATE = pd.to_datetime("1990-01-31")
 END_DATE = pd.to_datetime("2023-12-29")
 
 
@@ -57,9 +57,7 @@ def calculate_sp500_total_market_cap(
     return results_df
 
 
-def append_actual_sp500_index_and_approx_returns_A(
-    sp500_total_market_cap, df_msix, start_date=START_DATE, end_date=END_DATE
-):
+def append_actual_sp500_index_and_approx_returns_A(sp500_total_market_cap, df_msix):
     """
     Append the actual S&P 500 index level and returns to the sp500_total_market_cap DataFrame.
     Then, create a normalized market cap series. This normalized market cap series is
@@ -139,6 +137,12 @@ def calculate_sp500_returns_with_rebalancing(
     # Convert dates
     start_date = pd.to_datetime(start_date)
     end_date = pd.to_datetime(end_date)
+
+    # Filter CRSP data to date range
+    df_msf = df_msf[
+        (df_msf["date"] >= start_date) & (df_msf["date"] <= end_date)
+    ].copy()
+
     # Calculate market cap for each stock
     df_msf["market_cap"] = abs(df_msf["prc"]) * df_msf["shrout"]
 
@@ -197,7 +201,7 @@ def _demo_approximation_A():
     )
 
     sp500_total_market_cap = append_actual_sp500_index_and_approx_returns_A(
-        sp500_total_market_cap, df_msix, start_date=START_DATE, end_date=END_DATE
+        sp500_total_market_cap, df_msix
     )
 
     if True:
@@ -259,7 +263,7 @@ def _demo_approximation_A():
 def _demo_approximation_B():
     """
     Calculate the S&P 500 index using the approximation B. That is,
-    rebalance the portfolio every quarter. 
+    rebalance the portfolio every quarter.
     """
     df_constituents = pull_SP500_constituents.load_constituents(data_dir=DATA_DIR)
     df_msf = pull_CRSP_stock.load_CRSP_monthly_file(data_dir=DATA_DIR)
@@ -323,7 +327,7 @@ def _demo_approximation_B():
     )
 
     sp500_total_market_cap = append_actual_sp500_index_and_approx_returns_A(
-        sp500_total_market_cap, df_msix, start_date=START_DATE, end_date=END_DATE
+        sp500_total_market_cap, df_msix
     )
 
     sp500_returns = pd.merge(
@@ -339,8 +343,9 @@ def _demo_approximation_B():
     sns.lineplot(
         data=sp500_returns, x="date", y="diff_A_less_B", label="Reconstructed Portfolio"
     )
-    
+
     sp500_returns["diff_A_less_B"].describe()
+
 
 def create_sp500_index_approximations(data_dir=DATA_DIR):
     df_constituents = pull_SP500_constituents.load_constituents(data_dir=data_dir)
@@ -353,7 +358,8 @@ def create_sp500_index_approximations(data_dir=DATA_DIR):
     )
 
     sp500_total_market_cap = append_actual_sp500_index_and_approx_returns_A(
-        sp500_total_market_cap, df_msix, start_date=START_DATE, end_date=END_DATE
+        sp500_total_market_cap,
+        df_msix,
     )
 
     ## Approximation B
@@ -362,7 +368,7 @@ def create_sp500_index_approximations(data_dir=DATA_DIR):
     )
 
     df = pd.merge(sp500_total_market_cap, sp500_returns, on="date", how="inner")
-    
+
     # df.info()
     # df[["sprtrn", "ret_approx_A", "ret_approx_B"]].corr()
 

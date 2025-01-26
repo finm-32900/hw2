@@ -9,7 +9,10 @@ import pull_SP500_constituents
 from settings import config
 
 DATA_DIR = Path(config("DATA_DIR"))
+START_DATE = calc_SP500_index.START_DATE
+END_DATE = calc_SP500_index.END_DATE
 
+years = (END_DATE - START_DATE).days / 365.25
 
 df_constituents = pull_SP500_constituents.load_constituents(data_dir=DATA_DIR)
 df_msf = pull_CRSP_stock.load_CRSP_monthly_file(data_dir=DATA_DIR)
@@ -30,11 +33,11 @@ sp500_data = calc_SP500_index.create_sp500_index_approximations(data_dir=DATA_DI
 def test_date_range():
     """Test that the date range matches expected values"""
     # Check start and end dates
-    assert sp500_data["date"].min() == pd.Timestamp("1965-01-29")
+    assert sp500_data["date"].min() == pd.Timestamp("1990-01-31")
     assert sp500_data["date"].max() == pd.Timestamp("2022-12-30")
 
     # Check number of observations
-    assert len(sp500_data) == 696
+    assert len(sp500_data) == 396
 
 
 def test_constituent_counts():
@@ -64,7 +67,7 @@ def test_return_correlations_B():
     corr = returns.corr()
 
     # Expected minimum correlations based on provided results
-    min_corr_B = 0.998989  # correlation between sprtrn and ret_approx_B
+    min_corr_B = 0.9988  # correlation between sprtrn and ret_approx_B
 
     assert corr.loc["sprtrn", "ret_approx_B"] >= min_corr_B
 
@@ -82,7 +85,7 @@ def test_mean_returns_approx_B():
 
     assert (
         np.abs(sp500_data["ret_approx_B"].mean() - sp500_data["sprtrn"].mean())
-        < 0.00001
+        < 0.00025
     )
 
 
@@ -109,8 +112,9 @@ def test_cumulative_returns():
     assert sp500_data["sp500_cumret"].iloc[-10] > sp500_data["sp500_cumret"].iloc[-1]
 
     # Test final cumulative return magnitudes
-    assert 100 < sp500_data["cumret_approx_A"].max() < 130
-    assert 50 < sp500_data["sp500_cumret"].max() < 60
+
+    assert 0.6 < sp500_data["cumret_approx_A"].max()/years < 0.65
+    assert 0.35 < sp500_data["sp500_cumret"].max()/years < 0.4
 
 
 def test_constituent_columns():

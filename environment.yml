@@ -1,10 +1,15 @@
-name: blank
+# If an environment with the same name exists, remove it first:
+# conda env remove -n finm
+
+# Create and install the environment:
+# conda env create -f environment.yml
+
+name: finm
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - python>=3.10.12
-  - pandas>=2.1.2
+  - python=3.12
   - altair>=5.1.2
   - beautifulsoup4>=4.12.2
   - doit>=0.36.0
@@ -16,11 +21,11 @@ dependencies:
   - notebook>=7.0.6
   - numpy>=1.26.0
   - openpyxl>=3.1.2
+  - pandas>=2.1.2
   - pandas-datareader>=0.10.0
   - pandas-market-calendars>=4.3.1
   - plotly>=5.18.0
   - plotnine>=0.12.4
-  - polars>=0.19.12
   - pytest>=7.4.3
   - python-decouple>=3.8
   - python-dotenv>=1.0.0
@@ -35,3 +40,7 @@ dependencies:
   - xbbg>=0.7.7
   - xlrd>=2.0.1
   - zstandard>=0.22.0
+  - pip
+  - pip:
+    - polars-lts-cpu # This is for compatibility with older CPUs, like the one the autograder uses.
+    - wrds
