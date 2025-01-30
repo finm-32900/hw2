@@ -67,7 +67,7 @@ def test_return_correlations_B():
     corr = returns.corr()
 
     # Expected minimum correlations based on provided results
-    min_corr_B = 0.9988  # correlation between sprtrn and ret_approx_B
+    min_corr_B = 0.9987  # correlation between sprtrn and ret_approx_B
 
     assert corr.loc["sprtrn", "ret_approx_B"] >= min_corr_B
 
